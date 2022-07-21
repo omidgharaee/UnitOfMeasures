@@ -1,0 +1,26 @@
+﻿<Window x:Class="UnitOfMeasures.Endpoints.WPF.Windows.DimensionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UnitOfMeasures.Endpoints.WPF.Windows"
+        mc:Ignorable="d"
+        Title="Dimensions" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Grid>
+        <DockPanel>
+
+            <DataGrid Width="500" Height="300" Margin="20" RowHeight="30" FontSize="12" DockPanel.Dock="Top" x:Name="dataGrid"  CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding Dimensions}" PreviewKeyDown="DataGrid_PreviewKeyDown"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+
+            <StackPanel Height="50" Margin="0,0,25,0" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
+                <Button Width="100" Name="Close" Height="30" Click="Close_Click">Close</Button>
+            </StackPanel>
+        </DockPanel>
+ 
+    </Grid>
+</Window>

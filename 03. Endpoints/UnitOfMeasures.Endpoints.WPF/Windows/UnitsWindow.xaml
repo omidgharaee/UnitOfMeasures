@@ -1,0 +1,79 @@
+﻿<Window x:Class="UnitOfMeasures.Endpoints.WPF.Windows.UnitsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UnitOfMeasures.Endpoints.WPF.Windows"
+        mc:Ignorable="d"
+        Title="Units" Height="550" Width="700" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,5,0,0">
+            <Label  Width="150">Dimension</Label>
+            <ComboBox Width="300" Name="convertionType" DisplayMemberPath="Name" SelectedValuePath="Id" Visibility="Visible">
+            </ComboBox>
+        </WrapPanel>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Name="AddUnitPanel">
+
+            <WrapPanel>
+                <Label Width="150">Unit Type</Label>
+                <ComboBox Width="300" Name="unitType" DisplayMemberPath="Name" SelectedValuePath="Type">
+                </ComboBox>
+            </WrapPanel>
+            
+            <WrapPanel>
+                <Label Width="150">Name</Label>
+                <TextBox x:Name="NametextBox" Width="300" Text="{Binding UnitName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+            </WrapPanel>
+
+            <WrapPanel>
+                <Label Width="150">Persian Name</Label>
+                <TextBox x:Name="PersianNametextBox" Width="300"></TextBox>
+            </WrapPanel>
+
+            <WrapPanel>
+                <Label Width="150">Abbreviation</Label>
+                <TextBox x:Name="AbbreviationtextBox" Width="300" Text="{Binding Abbreviation, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+            </WrapPanel>
+
+            <WrapPanel Visibility="Collapsed" Name="ConversionFactorPanel">
+                <Label Width="150">Conversion Factor</Label>
+                <TextBox x:Name="ConversionFactortextBox" Width="300" PreviewTextInput="NumberValidationTextBox" Text="{Binding ConversionFactor, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+            </WrapPanel>
+
+            <WrapPanel Visibility="Collapsed" Name="FormulaToBasetextPanel">
+                <Label Width="150">Formula To Base</Label>
+                <TextBox x:Name="FormulaToBasetextBox" Width="300" PreviewTextInput="FormulaToBasetextBox_PreviewKeyDown" Text="{Binding FormulaToBase, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+            </WrapPanel>
+
+            <WrapPanel Visibility="Collapsed" Name="FormulaFromBasePanel">
+                <Label Width="150">Formula From Base</Label>
+                <TextBox x:Name="FormulaFromBasetextBox" Width="300" PreviewTextInput="FormulaToBasetextBox_PreviewKeyDown" Text="{Binding FormulaFromBase, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+            </WrapPanel>
+
+            <Button Margin="0,10,0,0" Name="AddBtn" Click="AddBtn_Click"  IsEnabled="{Binding IsReadyState}">Add</Button>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" x:Name="dataGrid" CanUserAddRows="False" RowHeight="30" FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding Units, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" PreviewKeyDown="DataGrid_PreviewKeyDown">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Persian Name" Binding="{Binding PersianName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Abbreviation" Binding="{Binding Abbreviation}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Conversion Factor" Binding="{Binding ConversionFactor}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Formula To Base" Binding="{Binding FormulaToBase}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Formula From Base" Binding="{Binding FormulaFromBase}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
