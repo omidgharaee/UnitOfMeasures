@@ -10,6 +10,8 @@ namespace UnitOfMeasures.Core.Domain.Unit.Entities
 {
     public class Unit : BaseEntity<Guid>
     {
+      
+
         public Unit()
         {
 
@@ -18,6 +20,8 @@ namespace UnitOfMeasures.Core.Domain.Unit.Entities
         public Unit(Guid id)
         {
             Id = id;
+
+
         }
 
         public string Name { get; set; }
